@@ -1,11 +1,13 @@
 package com.miniproject.hisserver.order.model.response;
 
 import com.miniproject.hisserver.menu.model.Menu;
+import com.miniproject.hisserver.ordermenu.model.OrderMenu;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -15,5 +17,7 @@ import java.util.List;
 public class OrderResponse {
     private Long orderId;
     private int price;
-    private List<Menu> menu;
+    private List<OrderMenu> orderMenu;
+    private int seatNum;
+    private LocalDateTime orderTime;
 }

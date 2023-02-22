@@ -30,7 +30,7 @@ public class History extends BaseEntity {
 
     private int cost;
 
-    @OneToMany
+    @OneToMany(mappedBy = "history")
     private List<Orders> orders = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)

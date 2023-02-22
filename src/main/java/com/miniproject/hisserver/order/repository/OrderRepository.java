@@ -13,7 +13,7 @@ public interface OrderRepository extends JpaRepository<Orders, Long> {
 
     @Query("select o from Orders o" +
             " left join fetch o.store as s " +
-            " left join fetch s.seat as e " +
+            " left join fetch o.seat as e " +
             " where s.id = :storeId " +
             "and e.seatNum = :seatNum")
     List<Orders> findAllByStoreIdAndSeatId(Long storeId, int seatNum);

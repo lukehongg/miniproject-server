@@ -3,11 +3,14 @@ package com.miniproject.hisserver.order.model.dto;
 import com.miniproject.hisserver.menu.model.Menu;
 import com.miniproject.hisserver.order.model.Orders;
 import com.miniproject.hisserver.order.model.response.OrderResponse;
+import com.miniproject.hisserver.ordermenu.model.OrderMenu;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.criterion.Order;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -17,15 +20,21 @@ import java.util.List;
 public class OrderDto {
     private Long orderId;
     private int price;
-    private List<Menu> menu;
+    private List<OrderMenu> orderMenu;
+    private String menuName;
+    private int seatNum;
+    private LocalDateTime orderTime;
 
     public OrderDto(Orders orders) {
         this.orderId = orders.getId();
         this.price = orders.getPrice();
-        this.menu = orders.getMenu();
+        this.orderMenu = orders.getOrderMenu();
+        this.seatNum = orders.getSeat().getSeatNum();
+        this.orderTime = orders.getCreated_at();
     }
 
     public OrderResponse orderResponse() {
-        return new OrderResponse(orderId, price, menu);
+        return new OrderResponse(orderId, price, orderMenu, seatNum, orderTime);
     }
+
 }

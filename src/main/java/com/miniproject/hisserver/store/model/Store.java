@@ -30,10 +30,10 @@ public class Store extends BaseEntity {
     private String name;
     private String randomKey; // UUID 사용
 
-    @OneToMany
+    @OneToMany(mappedBy = "store")
     private List<Menu> menu = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "store")
     private List<Seat> seat = new ArrayList<>();
 
     @OneToMany(mappedBy = "store")

@@ -28,9 +28,9 @@ public class OrderService {
     }
 
     @Transactional
-    public List<Orders> listOrdersInTable(Long storeId, int seatNum) {
+    public List<OrderDto> listOrdersInTable(Long storeId, int seatNum) {
         List<Orders> orders = orderRepository.findAllByStoreIdAndSeatId(storeId, seatNum);
-        return orders;
+        return orders.stream().map(OrderDto::new).collect(Collectors.toList());
     }
 
 }
