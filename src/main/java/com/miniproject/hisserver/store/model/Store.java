@@ -1,9 +1,7 @@
 package com.miniproject.hisserver.store.model;
 
 import com.miniproject.hisserver.common.BaseEntity;
-import com.miniproject.hisserver.history.model.History;
 import com.miniproject.hisserver.menu.model.Menu;
-import com.miniproject.hisserver.order.model.Orders;
 import com.miniproject.hisserver.seat.model.Seat;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
@@ -24,7 +22,7 @@ import java.util.List;
 public class Store extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String category;
     private String name;
@@ -36,10 +34,5 @@ public class Store extends BaseEntity {
     @OneToMany(mappedBy = "store")
     private List<Seat> seat = new ArrayList<>();
 
-    @OneToMany(mappedBy = "store")
-    private List<History> history = new ArrayList<>();
-
-    @OneToMany(mappedBy = "store")
-    private List<Orders> orders = new ArrayList<>();
 
 }
