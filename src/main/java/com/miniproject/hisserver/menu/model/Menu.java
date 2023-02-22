@@ -1,7 +1,9 @@
-package com.miniproject.hisserver.seat.model;
+package com.miniproject.hisserver.menu.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.miniproject.hisserver.common.BaseEntity;
 import com.miniproject.hisserver.order.model.Orders;
+import com.miniproject.hisserver.ordermenu.model.OrderMenu;
 import com.miniproject.hisserver.store.model.Store;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
@@ -18,19 +20,22 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Where(clause = "deleted = false")
-@SQLDelete(sql = "UPDATE seat SET deleted = true Where id = ?")
-public class Seat extends BaseEntity {
-
+@SQLDelete(sql = "UPDATE menu SET deleted = true Where id = ?")
+public class Menu extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    private int seatNum;
+    private String name;
+
+    private String image;
+
+    private int price;
+
+    @OneToMany(mappedBy = "menu")
+    @JsonManagedReference
+    private List<OrderMenu> orderMenu = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Store store;
-
-    @OneToMany(mappedBy = "seat")
-    private List<Orders> orders = new ArrayList<>();
-
 }
